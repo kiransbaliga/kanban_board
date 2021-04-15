@@ -1,0 +1,68 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+</head>
+<body background="./Images/bg.jpg">
+    <div class="label">
+        <h1> TODO App...</h1>
+
+
+
+        <form action="/task" method="post">
+            <p><input type="text" name="content"></p>
+            <input type="submit" value="Add task">
+        </form>
+        <div class="board">
+            <h4>TO DO</h4>
+                {% for task in tasks %}
+                
+                    {% if task.done==False %}
+                    {% if task.doing==False %}
+                    <br>
+                    {{task.content}}
+                    <a href="/doing/{{task.id}}">Doing</a>
+                    <a href="/done/{{ task.id }}">Done</a>
+                    <a href="/delete/{{ task.id }}">Delete</a>
+                    {% endif %}
+                    {% endif %}
+                
+                {% endfor %}
+            
+        </div>
+        <div class="board">
+            <h4>DOING </h4>
+            {% for task in tasks %}
+            
+                {% if task.doing==True %}
+                {% if task.done==False %}
+                <br>
+                {{task.content}}
+                <a href="/doing/{{task.id}}">Doing</a>
+                <a href="/done/{{ task.id }}">Done</a>
+                <a href="/delete/{{ task.id }}">Delete</a>
+                {% endif %}
+                {% endif %}
+            
+            {% endfor %}
+        
+    </div>
+        <div class="board">
+            <h4>DONE </h4>
+            {% for task in tasks %}
+            
+                {% if task.done==True %}
+                {% if task.doing==False %}
+                <br>
+                {{task.content}}
+                <a href="/doing/{{task.id}}">Doing</a>
+                <a href="/done/{{ task.id }}">Done</a>
+                <a href="/delete/{{ task.id }}">Delete</a>
+                {% endif %}
+                {% endif %}
+            
+            {% endfor %}
+        
+    </div>
+    </div>
+</body>
+</html>
